@@ -98,3 +98,28 @@ Object.keys(obj2).forEach(key => {
 	const value = obj2[key];
 	console.log(`keyValue: ${key} | value: ${value} | typeValue: ${typeof value} | typeKey: ${typeof key}`);
 })
+
+console.log('\01');  // byte nulo
+console.log('\b1');  // backspace
+console.log('\f1');  // alimentador de formulário
+console.log('\n1');  // nova linha
+console.log('\r1');  // retorno de carro
+console.log('\t1');  // tabulação
+console.log('\v1');  // tabulação vertical
+
+console.log("this \
+is \
+a \
+new \
+line.");
+
+var lt;
+if ((lt = 5) < 10) {
+	console.log('lt < 5');
+}
+
+if ((lt = lt * 2) < 10) {
+	console.log('lt * 2 < 5');
+}
+
+document.forms.abc.text.value = 'get from document';
