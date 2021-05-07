@@ -1,0 +1,62 @@
+.controllers {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.buttons {
+  width: 90%;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.field:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.field .button {
+  width: 5.5rem;
+  cursor: pointer;
+  border: 1px solid var(--gray-0);
+  
+  background: var(--gray-50);
+  color: var(--white);
+
+  transition: all 150ms ease-in;
+}
+
+.field .button:hover {
+	color: var(--gray-100);
+	background: var(--gray-0);
+}
+
+.field .input {
+  border: 1px solid var(--gray-0);
+  padding: 2px 5px;
+  color: var(--gray-0);
+
+  transition: all 100ms linear;
+}
+
+.field .input:not(.two) {
+  width: calc(100% - 80px);
+}
+
+.field .input.two#edit-id {
+	width: calc(30% - 40px);
+	padding: 0;
+	text-align: center;
+}
+
+.field .input.two#edit-input {
+	width: calc(70% - 50px);
+}
+
+.field .input:focus,
+.field .input:active {
+  outline: 1px solid var(--gray-0);
+}
