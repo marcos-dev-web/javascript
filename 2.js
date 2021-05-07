@@ -42,3 +42,18 @@ console.log(o2); // -10
 console.log(o3); //  10
 console.log(o4); // -10
 
+
+function t(v) {
+	return ((!![] + !![]) * v) + v; // returns v * 3
+}
+
+const mv = 20;
+function s(v) {
+	return t(v) / t(v * 2); // always returns 0.5
+}
+
+const g = t(t(t(t(mv)))); // 1620
+const h = s(g); // 0.5
+const y = s(mv); // 0.5
+const z = s(s(s(s(mv)))); // 0.5
+console.log(`g: ${g} | h: ${h} | y: ${y} | z: ${z}`);
