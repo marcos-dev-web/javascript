@@ -57,3 +57,44 @@ const h = s(g); // 0.5
 const y = s(mv); // 0.5
 const z = s(s(s(s(mv)))); // 0.5
 console.log(`g: ${g} | h: ${h} | y: ${y} | z: ${z}`);
+
+const obj1 = {
+	fn: () => {
+		obj1.fn = obj1.fn2;
+	},
+	fn2: () => {
+		delete obj1.fn2;
+		obj1.fn = () => {
+			delete obj1.fn;
+		}
+	},
+}
+
+obj1.fn()          // altera o seu própio valor
+console.log(obj1);
+obj1.fn()          // altera o seu própio valor
+console.log(obj1);
+obj1.fn()          // altera o seu própio valor
+console.log(obj1); // delete fn e fn2
+
+
+var obj2;
+obj2 = {
+	"-": 'oi',
+	"": Number,
+	"!": "!",
+	[{}]: "joao",
+	"eval(": "var a;);",
+	"'": "`${'`obj2[\"-\"]`\"\/''`",
+	function: class {},
+	class: function () {return class {}},
+	obj2: obj2,
+	[[,,]]: {},
+}
+
+console.log(obj2);
+
+Object.keys(obj2).forEach(key => {
+	const value = obj2[key];
+	console.log(`keyValue: ${key} | value: ${value} | typeValue: ${typeof value} | typeKey: ${typeof key}`);
+})
