@@ -103,10 +103,12 @@ class Item {
 			return;
 		}
 
-		console.log('oi');
 		item.element.getElementsByTagName('p')[0].textContent = value;
+		item.value = value;
+
 		refreshList();
 		resetInputs();
+		insertIntoResults([]);
 	}
 
 	search_() {

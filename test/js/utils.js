@@ -95,6 +95,7 @@ export function insertIntoResults(listItems=results) {
 
 	listItems.forEach(item => {
 		let newItem = item.element.cloneNode(true);
+		newItem.addEventListener('click', () => extendElement(item.value, item.id));
 		search_results.appendChild(newItem);
 	});
 }
