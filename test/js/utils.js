@@ -3,6 +3,7 @@ const listView = document.getElementById('list-view');
 import { listInputs, search_results } from './inputs.js';
 
 var allItems = [];
+var results = [];
 
 export function id() {
   return String(new Date().getTime()).slice(10, 13);
@@ -33,10 +34,19 @@ export function removeItemById(id) {
 		const item = allItems[i];
 		if (item.id === id) {
 			item.element.remove();
-			delete allItems[i];
+			allItems = allItems.filter(t => t.id !== id);
 			break;
 		}
 	}
+
+	for (let i = 0; i < results.length; i++) {
+		const item = results[i];
+		if (item.id === id) {
+			item.element.remove();
+			results = results.filter(t => t.id !== id);
+		}
+	}
+	insertIntoResults(results);
 }
 
 export function refreshList() {
@@ -79,7 +89,8 @@ export function searchByValue(value) {
 	return allValues;
 }
 
-export function insertIntoResults(listItems) {
+export function insertIntoResults(listItems=results) {
+	results = listItems;
 	search_results.innerHTML = null;
 
 	listItems.forEach(item => {

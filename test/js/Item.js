@@ -113,11 +113,8 @@ class Item {
 		const value = String(search_input.value).trim();
 
 		if (value.length === 0) return;
-		if (!isNumber(value)) {
-			const results = searchByValue(value);
-			insertIntoResults(results);
-		}
-
+		const results = searchByValue(value);
+		insertIntoResults(results);
 	}
 }
 
