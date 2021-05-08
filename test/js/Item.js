@@ -10,24 +10,10 @@ import {
 	searchByValue,
 	insertIntoResults,
 	extendElement,
+	createElement,
 } from "./utils.js";
 
 import { new_input, del_input, edit_id, edit_input, search_input } from "./inputs.js";
-
-function createElement(value, id) {
-	let container = document.createElement("li");
-	let spanId = document.createElement("span");
-	let pContent = document.createElement("p");
-
-	container.classList.add("item");
-	spanId.textContent = String(id);
-	pContent.textContent = String(value);
-
-	container.appendChild(spanId);
-	container.appendChild(pContent);
-
-	return container;
-}
 
 class Item {
 	new_() {
@@ -87,6 +73,7 @@ class Item {
 			alert(`id [${id}] is not valid!`);
 			return;
 		}
+
 		if (!findItem("id", id)) {
 			alert(`the item with id [${id}] not exist!`);
 			return;
@@ -98,8 +85,9 @@ class Item {
 		}
 
 		const item = getItem(id);
+
 		if (item.value === value) {
-			alert(`the values are equals`);
+			alert(`the values are equals!`);
 			return;
 		}
 
@@ -115,9 +103,12 @@ class Item {
 		const value = String(search_input.value).trim();
 
 		if (value.length === 0) return;
+
 		const results = searchByValue(value);
 		insertIntoResults(results);
+
 	}
 }
 
 export default Item;
+

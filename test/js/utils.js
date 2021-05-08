@@ -4,18 +4,16 @@ import { listInputs, search_results } from './inputs.js';
 
 var allItems = [];
 var results = [];
+var currentId = 0;
 
 export function id() {
-  return String(new Date().getTime()).slice(10, 13);
+  return String(currentId++);
 }
 
-export function getItem(id) {
-	for (let i = 0; i < allItems.length; i++) {
-		if (allItems[i].id === id) {
-			return allItems[i];
-		}
-	}
-	return {};
+export function isNumber(value) {
+	const validNumbers = '0123456789';
+	value = value.split('');
+	return !value.some(ch => validNumbers.indexOf(ch) === -1);
 }
 
 export function findItem(type, value) {
@@ -29,6 +27,32 @@ export function findItem(type, value) {
 	}
 }
 
+export function searchByValue(value) {
+	let allValues = [];
+
+	for (let item of allItems) {
+		if (item.value.indexOf(value) !== -1) {
+			allValues.push(item);
+		}
+	}
+
+	return allValues;
+}
+
+export function getItem(id) {
+	for (let i = 0; i < allItems.length; i++) {
+		const item = allItems[i];
+		if (item.id === id) {
+			return item;
+		}
+	}
+	return {};
+}
+
+export function insertItem(obj) {
+  allItems.push(obj);
+}
+
 export function removeItemById(id) {
 	for (let i = 0; i < allItems.length; i++) {
 		const item = allItems[i];
@@ -40,12 +64,13 @@ export function removeItemById(id) {
 	}
 
 	for (let i = 0; i < results.length; i++) {
-		const item = results[i];
-		if (item.id === id) {
-			item.element.remove();
-			results = results.filter(t => t.id !== id);
+		const result = results[i];
+		if (result.id === id) {
+			result.element.remove();
+			results = results.filter(rs => rs.id !== id);
 		}
 	}
+
 	insertIntoResults(results);
 }
 
@@ -56,8 +81,8 @@ export function refreshList() {
     }
   });
 
-  allItems.forEach(node => {
-    listView.appendChild(node.element);
+  allItems.forEach(item => {
+    listView.appendChild(item.element);
   });
 }
 
@@ -65,28 +90,6 @@ export function resetInputs() {
 	listInputs.forEach(input => {
 		input.value = "";
 	});
-}
-
-export function insertItem(obj) {
-  allItems.push(obj);
-}
-
-export function isNumber(value) {
-	const allowedChars = '0123456789';
-	const v = value.split('');
-	return !v.some(ch => allowedChars.indexOf(ch) === -1);
-}
-
-export function searchByValue(value) {
-	let allValues = [];
-
-	for (let v of allItems) {
-		if (v.value.indexOf(value) !== -1) {
-			allValues.push(v);
-		}
-	}
-
-	return allValues;
 }
 
 export function insertIntoResults(listItems=results) {
@@ -129,4 +132,19 @@ export function extendElement(value, id) {
 	});
 
 	document.body.appendChild(container);
+}
+
+export function createElement(value, id) {
+	let container = document.createElement("li");
+	let spanId = document.createElement("span");
+	let pContent = document.createElement("p");
+
+	container.classList.add("item");
+	spanId.textContent = String(id);
+	pContent.textContent = String(value);
+
+	container.appendChild(spanId);
+	container.appendChild(pContent);
+
+	return container;
 }
