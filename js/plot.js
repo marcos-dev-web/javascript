@@ -26,12 +26,12 @@ class Ploter {
 }
 
 function init() {
-	console.log(data)
-	
-	data.forEach(item => {
-		const plot = new Ploter(item.h, item.p);
-		plot.create()
-		plot.put();
+	data.forEach((item, i) => {
+		setTimeout(() => {
+			const plot = new Ploter(item.h, item.p);
+			plot.create()
+			plot.put();
+		}, 50 * i);
 	});
 }
 
