@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/view.css">
+	<link rel="stylesheet" href="./css/controllers.css">
+	<link rel="stylesheet" href="./css/results.css">
+	<link rel="stylesheet" href="./css/modal.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	<main class="container">
+		<aside class="side view">
+			<h1 class="title">Items</h1>
+			<ul class="items" id="list-view">
+			</ul>
+		</aside>
+		<aside class="side controllers">
+			<h1 class="title">Controllers</h1>
+			<div class="buttons">
+				<div class="field">
+					<button class="button" id="new-button">New</button>
+					<input type="text" class="input" id="new-input" placeholder="Enter your text">
+				</div>
+				<div class="field">
+					<button class="button" id="del-button">Del</button>
+					<input type="search" class="input" id="del-input" placeholder="ID">
+				</div>
+				<div class="field">
+					<button class="button" id="edit-button">Edit</button>
+					<input type="search" class="input two" id="edit-id" placeholder="ID">
+					<input type="search" class="input two" id="edit-input" placeholder="New value">
+				</div>
+				<div class="field">
+					<button class="button" id="search-button">Search</button>
+					<input type="search" class="input" id="search-input" placeholder="Type anything">
+				</div>
+			</div>
+			<div class="search-results" id="search-results">
+			</div>
+		</aside>
+	</main>
+	<script type="module" src="./js/main.js"></script>
+</body>
+</html>
